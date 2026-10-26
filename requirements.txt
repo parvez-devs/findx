@@ -1,0 +1,4 @@
+Flask>=3.1,<4
+beautifulsoup4>=4.13,<5
+urllib3>=2.3,<3
+gunicorn>=23,<25
