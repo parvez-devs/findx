@@ -100,9 +100,11 @@ def analyze_website(url: str) -> str:
 
     try:
         resp = safe_get_html(url)
-        resp.raise_for_status()
-    except Exception:
-        return "❌ URL ফেচ করতে ব্যর্থ। Public HTTP(S) URL ও SSL চেক করুন।"
+    except ValueError as exc:
+        raise ValueError(str(exc)) from exc
+    except Exception as exc:
+        app.logger.warning("Website fetch failed: %s", type(exc).__name__)
+        raise ValueError("Website fetch failed. Check the public URL, TLS certificate and site access permissions.") from exc
 
     soup = BeautifulSoup(resp.text, "html.parser")
 
@@ -226,6 +228,11 @@ def analyze_website(url: str) -> str:
     return "\n".join(lines)
 
 
+@app.get("/health")
+def health():
+    return {"status": "ok", "app": "findx"}, 200
+
+
 @app.route("/", methods=["GET"])
 def index():
     return render_template("index.html")
@@ -241,7 +248,10 @@ def analyze():
     if not urlparse(url).scheme:
         url = "https://" + url
 
-    report = analyze_website(url)
+    try:
+        report = analyze_website(url)
+    except ValueError as exc:
+        return render_template("index.html", error=str(exc)), 400
 
     # টেক্সট ফাইল হিসেবে সেভ
     filename = f"findx_{uuid.uuid4().hex}.txt"
@@ -255,7 +265,7 @@ def analyze():
 
 @app.route("/download/<filename>")
 def download(filename):
-    if not re.fullmatch(r'findx_[0-9a-f]{32}\\.txt', filename):
+    if not re.fullmatch(r'findx_[0-9a-f]{32}\.txt', filename):
         abort(404)
     return send_from_directory(OUTPUT_DIR, filename, as_attachment=True, download_name='findx-analysis.txt')
 
