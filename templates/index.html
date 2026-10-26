@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Structure Analyzer</title>
+    <style>*{box-sizing:border-box}body{font:16px/1.6 system-ui,-apple-system,Segoe UI,sans-serif;background:radial-gradient(circle at 22% 5%,#173c62,transparent 40%),radial-gradient(circle at 88% 90%,#0c314a,transparent 30%),#061221;color:#ebf8ff;display:flex;min-height:100vh;justify-content:center;align-items:center;margin:0;padding:24px}.card{background:linear-gradient(135deg,#173550dc,#0a1c30e8);padding:clamp(24px,6vw,60px);border:1px solid #2a506d;border-radius:24px;box-shadow:0 30px 100px #0008;width:100%;max-width:730px;backdrop-filter:blur(20px)}h1{font-size:clamp(29px,5vw,45px);line-height:1.15;letter-spacing:-.04em;margin:0 0 16px;color:#edfaff}h1:before{content:'FINDX / ';color:#32d9e9;font-size:13px;display:block;letter-spacing:.2em;margin-bottom:17px}p{color:#abc5d8;font-size:15px;margin-bottom:28px}input[type=text]{background:#071524;color:#ecf9ff;width:100%;border:1px solid #365b7b;border-radius:12px;padding:17px;font:16px system-ui;outline:none;margin-bottom:16px}input[type=text]:focus{border-color:#3ddfec;box-shadow:0 0 0 3px #23d2e522}button{width:100%;padding:16px;background:linear-gradient(100deg,#2ce7d6,#63bff8);color:#061927;border:0;border-radius:12px;font-size:16px;font-weight:800;cursor:pointer}button:hover{filter:brightness(1.12)}.error{color:#ffd7df;border:1px solid #8b4455;background:#631f2a55;padding:12px;border-radius:10px;margin-bottom:12px}</style>
+</head>
+<body>
+    <div class="card">
+        <h1>🌐 ওয়েবসাইট এক্সিকিউশন অ্যানালাইজার</h1>
+        <p>পাবলিক ওয়েবসাইটের HTML গঠন, headings, forms, links এবং scripts বিশ্লেষণ করে একটি TXT রিপোর্ট তৈরি করুন।</p>
+
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+
+        <form action="/analyze" method="POST">
+            <input type="text" name="url" placeholder="https://example.com" required>
+            <button type="submit">🔍 বিশ্লেষণ করুন</button>
+        </form>
+    </div>
+</body>
+</html>
