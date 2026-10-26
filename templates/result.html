@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>বিশ্লেষণ ফলাফল</title>
+    <style>*{box-sizing:border-box}body{font:15px/1.65 system-ui,-apple-system,Segoe UI,sans-serif;background:radial-gradient(circle at 20% 5%,#193f5e,transparent 35%),#061321;color:#e8f4fc;margin:0;padding:36px 18px}.container{max-width:980px;margin:0 auto;background:linear-gradient(125deg,#122d46,#0b1c2e);border:1px solid #2e506e;padding:clamp(18px,4vw,42px);border-radius:22px;box-shadow:0 24px 80px #0007}h1{font-size:clamp(28px,5vw,42px);letter-spacing:-.04em;margin:0;color:#3de1d9}p{color:#b4cadb}pre{background:#061322;color:#dbf1fb;padding:22px;border:1px solid #2c516d;border-radius:12px;overflow-x:auto;white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px;line-height:1.8;max-height:68vh;overflow-y:auto}.btn{display:inline-block;margin:18px 8px 0 0;padding:13px 22px;border-radius:10px;background:linear-gradient(100deg,#2bedd3,#60c1f8);color:#061927;text-decoration:none;font-weight:800}.btn-secondary{background:#234660;color:#e7f8ff}@media(max-width:620px){.container{padding:19px}.btn{display:block;text-align:center;margin:13px 0}}</style>
+</head>
+<body>
+    <div class="container">
+        <h1>✅ বিশ্লেষণ সম্পন্ন</h1>
+        <p>নিচে ওয়েবসাইটের এক্সিকিউশন অ্যানালাইসিস প্রম্পট ফরম্যাটে দেখানো হলো।</p>
+
+        <pre>{{ report }}</pre>
+
+        <a href="/download/{{ filename }}" class="btn">📥 টেক্সট ফাইল ডাউনলোড করুন</a>
+        <a href="/" class="btn btn-secondary">🔄 নতুন URL বিশ্লেষণ করুন</a>
+    </div>
+</body>
+</html>
